@@ -1,6 +1,6 @@
 import * as React from "react";
 import { graphql } from "relay-runtime";
-import { useFragment } from 'react-relay';
+import { useFragment } from "react-relay";
 import Card from "./Card";
 import Heading from "./Heading";
 import PosterByline from "./PosterByline";
@@ -9,31 +9,31 @@ import Image from "./Image";
 import { StoryFragment$key } from "./__generated__/StoryFragment.graphql";
 
 type Props = {
-    story: StoryFragment$key,
+  story: StoryFragment$key;
 };
 
 const StoryFragment = graphql`
-fragment StoryFragment on Story {
+  fragment StoryFragment on Story {
     title
     summary
     createdAt
     poster {
-        ...PosterBylineFragment
+      ...PosterBylineFragment
     }
     thumbnail {
-        url
+      ...ImageFragment @arguments(width: 400)
     }
-}
+  }
 `;
 
 export default function Story({ story }: Props): React.ReactElement {
-    const data = useFragment(StoryFragment, story);
-    return (
-        <Card>
-            <PosterByline poster={data.poster} />
-            <Heading>{data.title}</Heading>
-            <Image image={data.thumbnail} width={400} height={400} />
-            <StorySummary summary={data.summary} />
-        </Card>
-    );
+  const data = useFragment(StoryFragment, story);
+  return (
+    <Card>
+      <PosterByline poster={data.poster} />
+      <Heading>{data.title}</Heading>
+      <Image image={data.thumbnail} width={400} height={400} />
+      <StorySummary summary={data.summary} />
+    </Card>
+  );
 }
