@@ -7,6 +7,7 @@ import {
 import { graphql } from "relay-runtime";
 import Image from "./Image";
 import Timestamp from "./Timestamp";
+import OrganizationKind from "./OrganizationKind";
 
 import type { PosterDetailsHovercardContentsQuery as QueryType } from "./__generated__/PosterDetailsHovercardContentsQuery.graphql";
 import type { PosterDetailsHovercardContentsBodyFragment$key } from "./__generated__/PosterDetailsHovercardContentsBodyFragment.graphql";
@@ -45,6 +46,14 @@ const PosterDetailsHovercardContentsBodyFragment = graphql`
     profilePicture {
       ...ImageFragment
     }
+    ... on Organization {
+      organizationKind
+    }
+    ... on Person {
+      location {
+        name
+      }
+    }
   }
 `;
 
@@ -67,6 +76,12 @@ function PosterDetailsHovercardContentsBody({
         <li>
           Joined <Timestamp time={data.joined} />
         </li>
+        {data.location != null && <li>{data.location.name}</li>}
+        {data.organizationKind != null && (
+          <li>
+            <OrganizationKind kind={data.organizationKind} />
+          </li>
+        )}
       </ul>
       <div className="posterHovercard__buttons">
         <button>Friend</button>
