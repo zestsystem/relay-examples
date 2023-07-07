@@ -1,6 +1,5 @@
 import * as React from "react";
 import { graphql } from "relay-runtime";
-import { useLazyLoadQuery } from "react-relay";
 import LoadingSpinner from "./LoadingSpinner";
 import ViewerProfile from "./ViewerProfile";
 import ContactsList from "./ContactsList";
