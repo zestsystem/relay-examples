@@ -9,7 +9,9 @@ type Props = {
 };
 
 const StoryLikeButtonFragment = graphql`
-  fragment StoryLikeButtonFragment on Story {
+  fragment StoryLikeButtonFragment on Story 
+  @updatable
+  {
     id
     likeCount
     doesViewerLike
@@ -40,7 +42,16 @@ export default function StoryLikeButton({ story }: Props): React.ReactElement {
             variables: {
                 id: data.id,
                 doesLike: !data.doesViewerLike
-            }
+            },
+            optimisticUpdater: (store) => {
+
+                const { updatableData } = store.readUpdatableFragment_EXPERIMENTAL(StoryLikeButtonFragment, story);
+
+                const alreadyLikes = updatableData.doesViewerLike;
+                updatableData.doesViewerLike = !alreadyLikes;
+                updatableData.likeCount += (alreadyLikes ? -1 : 1);
+
+            },
         })
     };
     return (
