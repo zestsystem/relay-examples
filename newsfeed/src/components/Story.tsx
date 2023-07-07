@@ -6,10 +6,11 @@ import Heading from "./Heading";
 import PosterByline from "./PosterByline";
 import StorySummary from "./StorySummary";
 import Image from "./Image";
+import StoryCommentsSection from "./StoryCommentsSection";
 import { StoryFragment$key } from "./__generated__/StoryFragment.graphql";
 
 type Props = {
-  story: StoryFragment$key;
+    story: StoryFragment$key;
 };
 
 const StoryFragment = graphql`
@@ -23,17 +24,19 @@ const StoryFragment = graphql`
     thumbnail {
       ...ImageFragment @arguments(width: 400)
     }
+    ...StoryCommentsSectionFragment
   }
 `;
 
 export default function Story({ story }: Props): React.ReactElement {
-  const data = useFragment(StoryFragment, story);
-  return (
-    <Card>
-      <PosterByline poster={data.poster} />
-      <Heading>{data.title}</Heading>
-      <Image image={data.thumbnail} width={400} height={400} />
-      <StorySummary summary={data.summary} />
-    </Card>
-  );
+    const data = useFragment(StoryFragment, story);
+    return (
+        <Card>
+            <PosterByline poster={data.poster} />
+            <Heading>{data.title}</Heading>
+            <Image image={data.thumbnail} width={400} height={400} />
+            <StorySummary summary={data.summary} />
+            <StoryCommentsSection story={data} />
+        </Card>
+    );
 }
