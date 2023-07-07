@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<e11abb623c4560be0dbc6aa8b06e5e32>>
+ * @generated SignedSource<<bd1f0ad45804bb0125df3f88cc53b419>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -294,6 +294,20 @@ return {
                         "kind": "LinkedHandle",
                         "name": "comments"
                       },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "likeCount",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "doesViewerLike",
+                        "storageKey": null
+                      },
                       (v2/*: any*/)
                     ],
                     "storageKey": null
@@ -375,12 +389,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "660a3e0e0d0fcc8503bc2f40d2449d93",
+    "cacheID": "bd4ada1bfa6360bdbb4eaaa9610fa85b",
     "id": null,
     "metadata": {},
     "name": "AppQuery",
     "operationKind": "query",
-    "text": "query AppQuery {\n  ...NewsfeedFragment\n  ...SidebarFragment\n}\n\nfragment CommentFragment on Comment {\n  text\n}\n\nfragment ContactRowFragment on Actor {\n  __isActor: __typename\n  name\n  profilePicture {\n    ...ImageFragment\n  }\n}\n\nfragment ContactsListFragment on Viewer {\n  contacts {\n    __typename\n    id\n    ...ContactRowFragment\n  }\n}\n\nfragment ImageFragment on Image {\n  url\n  altText\n}\n\nfragment ImageFragment_OxVt3 on Image {\n  url(width: 400)\n  altText\n}\n\nfragment NewsfeedFragment on Query {\n  viewer {\n    newsfeedStories(first: 3) {\n      edges {\n        node {\n          id\n          ...StoryFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n}\n\nfragment PosterBylineFragment on Actor {\n  __isActor: __typename\n  id\n  name\n  profilePicture {\n    ...ImageFragment\n  }\n}\n\nfragment SidebarFragment on Query {\n  viewer {\n    ...ViewerProfileFragment\n    ...ContactsListFragment\n  }\n}\n\nfragment StoryCommentsSectionFragment on Story {\n  comments(first: 3) {\n    pageInfo {\n      startCursor\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...CommentFragment\n        __typename\n      }\n      cursor\n    }\n  }\n  id\n}\n\nfragment StoryFragment on Story {\n  title\n  summary\n  createdAt\n  poster {\n    __typename\n    ...PosterBylineFragment\n    id\n  }\n  thumbnail {\n    ...ImageFragment_OxVt3\n  }\n  ...StoryCommentsSectionFragment\n}\n\nfragment ViewerProfileFragment on Viewer {\n  actor {\n    __typename\n    name\n    profilePicture {\n      url\n    }\n    id\n  }\n}\n"
+    "text": "query AppQuery {\n  ...NewsfeedFragment\n  ...SidebarFragment\n}\n\nfragment CommentFragment on Comment {\n  text\n}\n\nfragment ContactRowFragment on Actor {\n  __isActor: __typename\n  name\n  profilePicture {\n    ...ImageFragment\n  }\n}\n\nfragment ContactsListFragment on Viewer {\n  contacts {\n    __typename\n    id\n    ...ContactRowFragment\n  }\n}\n\nfragment ImageFragment on Image {\n  url\n  altText\n}\n\nfragment ImageFragment_OxVt3 on Image {\n  url(width: 400)\n  altText\n}\n\nfragment NewsfeedFragment on Query {\n  viewer {\n    newsfeedStories(first: 3) {\n      edges {\n        node {\n          id\n          ...StoryFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n}\n\nfragment PosterBylineFragment on Actor {\n  __isActor: __typename\n  id\n  name\n  profilePicture {\n    ...ImageFragment\n  }\n}\n\nfragment SidebarFragment on Query {\n  viewer {\n    ...ViewerProfileFragment\n    ...ContactsListFragment\n  }\n}\n\nfragment StoryCommentsSectionFragment on Story {\n  comments(first: 3) {\n    pageInfo {\n      startCursor\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...CommentFragment\n        __typename\n      }\n      cursor\n    }\n  }\n  id\n}\n\nfragment StoryFragment on Story {\n  title\n  summary\n  createdAt\n  poster {\n    __typename\n    ...PosterBylineFragment\n    id\n  }\n  thumbnail {\n    ...ImageFragment_OxVt3\n  }\n  ...StoryCommentsSectionFragment\n  ...StoryLikeButtonFragment\n}\n\nfragment StoryLikeButtonFragment on Story {\n  id\n  likeCount\n  doesViewerLike\n}\n\nfragment ViewerProfileFragment on Viewer {\n  actor {\n    __typename\n    name\n    profilePicture {\n      url\n    }\n    id\n  }\n}\n"
   }
 };
 })();

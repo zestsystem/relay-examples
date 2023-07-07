@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<41b3f5d7e3373775fe28a3926a2d8020>>
+ * @generated SignedSource<<27ac7036df8690af7a92153ed924abfb>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -323,6 +323,20 @@ return {
                         "kind": "LinkedHandle",
                         "name": "comments"
                       },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "likeCount",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "doesViewerLike",
+                        "storageKey": null
+                      },
                       (v3/*: any*/)
                     ],
                     "storageKey": null
@@ -362,12 +376,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "b24cd12258c8b69f92e7c3218acf224c",
+    "cacheID": "d702239a3a97b3992fa90212b448fb6d",
     "id": null,
     "metadata": {},
     "name": "NewsfeedContentsRefetchQuery",
     "operationKind": "query",
-    "text": "query NewsfeedContentsRefetchQuery(\n  $count: Int = 3\n  $cursor: String\n) {\n  ...NewsfeedFragment_1G22uz\n}\n\nfragment CommentFragment on Comment {\n  text\n}\n\nfragment ImageFragment on Image {\n  url\n  altText\n}\n\nfragment ImageFragment_OxVt3 on Image {\n  url(width: 400)\n  altText\n}\n\nfragment NewsfeedFragment_1G22uz on Query {\n  viewer {\n    newsfeedStories(after: $cursor, first: $count) {\n      edges {\n        node {\n          id\n          ...StoryFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n}\n\nfragment PosterBylineFragment on Actor {\n  __isActor: __typename\n  id\n  name\n  profilePicture {\n    ...ImageFragment\n  }\n}\n\nfragment StoryCommentsSectionFragment on Story {\n  comments(first: 3) {\n    pageInfo {\n      startCursor\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...CommentFragment\n        __typename\n      }\n      cursor\n    }\n  }\n  id\n}\n\nfragment StoryFragment on Story {\n  title\n  summary\n  createdAt\n  poster {\n    __typename\n    ...PosterBylineFragment\n    id\n  }\n  thumbnail {\n    ...ImageFragment_OxVt3\n  }\n  ...StoryCommentsSectionFragment\n}\n"
+    "text": "query NewsfeedContentsRefetchQuery(\n  $count: Int = 3\n  $cursor: String\n) {\n  ...NewsfeedFragment_1G22uz\n}\n\nfragment CommentFragment on Comment {\n  text\n}\n\nfragment ImageFragment on Image {\n  url\n  altText\n}\n\nfragment ImageFragment_OxVt3 on Image {\n  url(width: 400)\n  altText\n}\n\nfragment NewsfeedFragment_1G22uz on Query {\n  viewer {\n    newsfeedStories(after: $cursor, first: $count) {\n      edges {\n        node {\n          id\n          ...StoryFragment\n          __typename\n        }\n        cursor\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n      }\n    }\n  }\n}\n\nfragment PosterBylineFragment on Actor {\n  __isActor: __typename\n  id\n  name\n  profilePicture {\n    ...ImageFragment\n  }\n}\n\nfragment StoryCommentsSectionFragment on Story {\n  comments(first: 3) {\n    pageInfo {\n      startCursor\n      hasNextPage\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...CommentFragment\n        __typename\n      }\n      cursor\n    }\n  }\n  id\n}\n\nfragment StoryFragment on Story {\n  title\n  summary\n  createdAt\n  poster {\n    __typename\n    ...PosterBylineFragment\n    id\n  }\n  thumbnail {\n    ...ImageFragment_OxVt3\n  }\n  ...StoryCommentsSectionFragment\n  ...StoryLikeButtonFragment\n}\n\nfragment StoryLikeButtonFragment on Story {\n  id\n  likeCount\n  doesViewerLike\n}\n"
   }
 };
 })();
